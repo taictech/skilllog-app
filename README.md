@@ -32,6 +32,7 @@
 git clone https://github.com/your-username/skilllog-app.git
 cd skilllog-app
 ./mvnw spring-boot:run
+```
 
 ---
 
