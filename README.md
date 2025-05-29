@@ -38,10 +38,10 @@ cd skilllog-app
 ## 📸 スクリーンショット
 
 ### 📋 一覧画面
-![一覧画面](images\WS001_登録機能.png)
+![一覧画面](images/WS001_登録機能.png)
 
 ### 📝 登録画面
-![登録画面](images\WS002_一覧機能.png)
+![登録画面](images/WS002_一覧機能.png)
 
 
 ---
