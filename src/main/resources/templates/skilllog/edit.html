@@ -2,10 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- layout.html に置き換える命令 -->
 <div th:replace="skilllog/layout :: layout(~{::#main-content})">
-    <div id="main-content">
-
+	<div id="main-content">
         <h1>スキルログ編集</h1>
-
         <form th:action="@{/skilllog-web/edit}" th:object="${skillLog}" method="post">
             <input type="hidden" th:field="*{id}" />
 

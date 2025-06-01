@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- layout.html に置き換える命令 -->
 <div th:replace="skilllog/layout :: layout(~{::#main-content})">
-    <div id="main-content">
+	<div id="main-content">
         <h1>スキルログ登録</h1>
 
         <form th:action="@{/skilllog-web/new}" th:object="${skillLog}" method="post">
@@ -55,15 +55,17 @@
 						class="form-select" 
 						th:classappend="${#fields.hasErrors('category')} ? 'is-invalid'"
 						required>
-                    <option th:each="cat : ${categories}" 
-							th:value="${cat.skillId}" 
-							th:text="${cat.name}">
-					</option>
-					<div class="invalid-feedback"
-					     th:if="${#fields.hasErrors('category')}"
-					     th:errors="*{category}">
-					 </div>
+						<option value="">-- 選択してください --</option> <!-- 初期の空選択肢 -->
+
+						<option th:each="cat : ${categories}"
+						        th:value="${cat.skillId}"
+						        th:text="${cat.name}">
+						</option>
                 </select>
+				<div class="invalid-feedback"
+				     th:if="${#fields.hasErrors('category')}"
+				     th:errors="*{category}">
+				 </div>
             </div>
 
             <div class="text-center">

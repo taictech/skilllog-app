@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- 共通レイアウトの中に「#main-content」を差し込む -->
 <div th:replace="skilllog/layout :: layout(~{::#main-content})">
-    <div id="main-content">
+	<div id="main-content">
+	<div th:if="${successMessage}" class="alert alert-success" role="alert">
+	    <span th:text="${successMessage}"></span>
+	</div>
         <h1>スキルログ一覧</h1>
 
         <table class="table table-bordered table-striped mt-3">
