@@ -2,24 +2,36 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class SkillLog {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	/** スキルID */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
     
+    /** 説明 */
+    @NotBlank(message = "説明は必須です")
 	private String description;
-
+    
+	/** 時間(分) */
+    @NotNull(message = "時間は必須です")
+    @Min(value = 1, message = "1分以上を入力してください")
     private int minutes;
-
+    
+    /** 日付 */
+    @NotNull(message = "日付は必須です")
     private LocalDate date;
 
     @ManyToOne

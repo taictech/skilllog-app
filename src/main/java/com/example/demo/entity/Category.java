@@ -11,8 +11,11 @@ public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	/** スキルID */
 	private Long skillId;
 	
+	/** スキル名 */
 	private String name;
 	
     // デフォルトコンストラクタ（JPA用に必須）
