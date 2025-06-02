@@ -39,10 +39,12 @@ cd skilllog-app
 ## 📸 スクリーンショット
 
 ### 📋 登録画面
-![一覧画面](images/ws001_register.jpeg)
+新しいスキルログをカテゴリ・時間・日付ごとに入力して記録する画面です。
+![登録画面](images/ws001_register.jpeg)
 
 ### 📝 一覧画面
-![登録画面](images/ws002_list.jpeg)
+登録されたスキルログを日付降順で表示する画面です。
+![一覧画面](images/ws002_list.jpeg)
 
 
 ---
@@ -51,12 +53,6 @@ cd skilllog-app
 
 - **ファイル名**：`README.md`
 - **場所**：プロジェクトのルートディレクトリ（`src/`と同階層）に置く
-- **画像追加**：
-  - スクショ画像を `/images/` フォルダに保存して、
-  ```markdown
-  ![一覧画面](images/skilllog_list.png)
-
-
 
 ---
 ## 🔧 今後の実装予定
