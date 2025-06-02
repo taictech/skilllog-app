@@ -61,4 +61,7 @@ cd skilllog-app
 - Bootstrap導入によるUI改善
 - タグによる絞り込み／検索
 
+## 🔗 関連リンク
+- Zenn記事：「[Spring Boot入門] スキル学習ログを記録するWebアプリを作成してみた」  
+  https://zenn.dev/taictech/articles/785409c42d9f63
 
