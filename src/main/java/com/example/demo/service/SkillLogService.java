@@ -29,6 +29,10 @@ public class SkillLogService {
         return skillLogRepository.findByCategorySkillId(skillId);
     }
     
+    public List<SkillLog> findByCategoryId(Long categoryId) {
+        return skillLogRepository.findByCategoryIdOrderByDateDesc(categoryId);
+    }
+
     public int getTotalMinutesByCategoryId(Long skillId) {
         Integer total = skillLogRepository.getTotalMinutesByCategoryId(skillId);
         return total != null ? total : 0;

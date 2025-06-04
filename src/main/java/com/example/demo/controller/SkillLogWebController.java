@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -30,13 +31,45 @@ public class SkillLogWebController {
         this.skillLogService = skillLogService;
 		this.categoryService = categoryService;
     }
-
+    
+    /**
+     * 一覧機能
+     * 
+     * @param model
+     * @return
+     */
     @GetMapping
     public String list(Model model) {
         model.addAttribute("skillLogs", skillLogService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "skilllog/list"; // → templates/skilllog/list.html をレンダリング
     }
     
+    /**
+     * 一覧機能（カテゴリ別）
+     * 
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/category/{id}")
+    public String listByCategory(@PathVariable Long id, Model model) {
+        List<SkillLog> filteredLogs = skillLogService.findByCategoryId(id);
+        model.addAttribute("skillLogs", filteredLogs);
+        model.addAttribute("categories", categoryService.findAll());
+        
+        Category selectedCategory = categoryService.findById(id).orElse(null);
+        model.addAttribute("selectedCategory", selectedCategory);
+        
+        return "skilllog/list";
+    }
+
+    /**
+     * 登録機能
+     * 
+     * @param model
+     * @return
+     */
     @GetMapping("/new")
     public String showForm(Model model) {
         model.addAttribute("skillLog", new SkillLog());
@@ -44,6 +77,16 @@ public class SkillLogWebController {
         return "skilllog/new";
     }
     
+    /**
+     * 登録機能
+     * 
+     * @param skillLog
+     * @param result
+     * @param categoryId
+     * @param model
+     * @param redirectAttributes
+     * @return
+     */
     @PostMapping("/new")
     public String create(@Valid @ModelAttribute SkillLog skillLog,
                          BindingResult result,
@@ -66,7 +109,12 @@ public class SkillLogWebController {
     }
 
 
-    
+    /**
+     * 
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Long id, Model model) {
         Optional<SkillLog> optionalLog = skillLogService.findById(id);
@@ -82,6 +130,13 @@ public class SkillLogWebController {
         return "skilllog/edit"; // テンプレート名（例：edit.html）
     }
     
+    /**
+     * 
+     * @param skillLog
+     * @param categoryId
+     * @param redirectAttributes
+     * @return
+     */
     @PostMapping("/edit")
     public String update(@ModelAttribute SkillLog skillLog,
                          @RequestParam("categoryId") Long categoryId,
@@ -99,7 +154,12 @@ public class SkillLogWebController {
         return "redirect:/skilllog-web";
     }
 
-    
+    /**
+     * 
+     * @param id
+     * @param redirectAttributes
+     * @return
+     */
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         skillLogService.deleteById(id);

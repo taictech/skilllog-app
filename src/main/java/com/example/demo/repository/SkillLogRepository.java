@@ -11,10 +11,13 @@ import com.example.demo.entity.SkillLog;
 public interface SkillLogRepository extends JpaRepository<SkillLog, Long> {
     // あとで必要になったらクエリメソッドも追加できます
 	
+	@Query("SELECT SUM(s.minutes) FROM SkillLog s WHERE s.category.skillId = :skillId")
+	Integer getTotalMinutesByCategoryId(@Param("skillId") Long skillId);
+	
 	// SkillLogRepository.java
 	List<SkillLog> findByCategorySkillId(Long skillId);
 	
-	@Query("SELECT SUM(s.minutes) FROM SkillLog s WHERE s.category.skillId = :skillId")
-	Integer getTotalMinutesByCategoryId(@Param("skillId") Long skillId);
+	List<SkillLog> findByCategoryIdOrderByDateDesc(Long categoryId);
+
 
 }
