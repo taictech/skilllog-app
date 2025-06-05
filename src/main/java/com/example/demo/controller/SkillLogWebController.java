@@ -55,10 +55,10 @@ public class SkillLogWebController {
     @GetMapping("/category/{id}")
     public String listByCategory(@PathVariable Long id, Model model) {
         List<SkillLog> filteredLogs = skillLogService.findByCategoryId(id);
+        Category selectedCategory = categoryService.findById(id).orElse(null);
+        
         model.addAttribute("skillLogs", filteredLogs);
         model.addAttribute("categories", categoryService.findAll());
-        
-        Category selectedCategory = categoryService.findById(id).orElse(null);
         model.addAttribute("selectedCategory", selectedCategory);
         
         return "skilllog/list";
